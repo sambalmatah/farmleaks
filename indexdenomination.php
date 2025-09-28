@@ -36,8 +36,8 @@
         <tr>
             <td><?php echo $i; ?></td>
             <td>
-                <a href="#">Ubah</a>
-                <a href="hapusdenomination.php?denkode='<?php echo $denomination["denkode"]; ?>'">Hapus</a>
+                <a href="ubahdenomination.php?denkode=<?php echo $denomination["denkode"]; ?>">Ubah</a>
+                <a href="hapusdenomination.php?denkode=<?php echo $denomination["denkode"]; ?>">Hapus</a>
             </td>
             <td><?php echo $denomination["denkode"]; ?></td>
             <td><?php echo $denomination["dennama"]; ?></td>

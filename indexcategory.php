@@ -35,7 +35,7 @@
         <tr>
             <td><?php echo $i; ?></td>
             <td>
-                <a href="#">Ubah</a>
+                <a href="ubahcategory.php?catkode=<?php echo $category["catkode"] ?>">Ubah</a>
                 <a href="hapuscategory.php?catkode=<?php echo $category["catkode"] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus Kategori : <?php echo $category["catnama"]; ?>?')">Hapus</a>
             </td>
             <td><?php echo $category["catkode"]; ?></td>

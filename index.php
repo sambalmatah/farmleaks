@@ -22,7 +22,8 @@
     <br><br>
     <a href="indexdenomination.php">Master Denomination</a>
     <br><br>
-
+    <a href="indexstuff.php">Master Stuff</a>
+    <br><br>
 
 </body>
 </html>

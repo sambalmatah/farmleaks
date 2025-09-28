@@ -3,7 +3,7 @@
     include 'functions.php';
 
     // get data dari tabel
-    $kodeden = $_GET["kodeden"];
+    $kodeden = $_GET["denkode"];
 
     // cek apakah data berhasil dihapus atau tidak
     if( hapusden($kodeden) > 0 ) {
