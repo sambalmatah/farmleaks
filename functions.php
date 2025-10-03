@@ -127,6 +127,7 @@
         return mysqli_affected_rows($connect);
     }
 
+    // ===FUNGSI STUFF===
     function tambahstu($data) {
         // daftarkan global variabel untuk $connect
         global $connect;
@@ -163,6 +164,61 @@
         mysqli_query($connect, $query);
 
         // kembalikan nilai baris database terafeksi
+        return mysqli_affected_rows($connect);
+    }
+
+    // ===FUNGSI EXPENSE===
+    function tambahexp($tambahexp) {
+        // daftarkan global variabel untuk $connect
+        global $connect;
+        // tangkap data
+        $kodeexp = htmlspecialchars($tambahexp["kodeexp"]);
+        $tanggalexp = htmlspecialchars($tambahexp["tanggalexp"]);
+        $totalexp = htmlspecialchars($tambahexp["totalexp"]);
+        $keteranganexp = htmlspecialchars($tambahexp["keteranganexp"]);
+
+        // buat query cek
+        $querycek = "SELECT * FROM expense
+                        WHERE expkode = '$kodeexp'";
+        
+        // simpan variabel cek
+        $cek = mysqli_query($connect, $querycek);
+
+        // cek apakah data sudah ada
+        if( mysqli_num_rows($cek) == 0 ) {
+
+            // buat query tambah
+            $query = "INSERT INTO expense
+                        VALUES ('$kodeexp', '$tanggalexp', '$totalexp', '$keteranganexp')";
+    
+            // jalankan query tambah
+            mysqli_query($connect, $query);
+        }
+
+        // kembalikan nilai bari database terafeksi
+        return mysqli_affected_rows($connect);
+    }
+
+    // ===FUNGSI EXPENSE DETAIL===
+    function tambahexd($tambahexd) {
+        // daftarkan global variabel untuk $connect
+        global $connect;
+        // tangkap data
+        $expensekodeexd = htmlspecialchars($tambahexd["expensekodeexd"]);
+        $kodeexd = htmlspecialchars($tambahexd["kodeexd"]);
+        $stuffexd = htmlspecialchars($tambahexd["stuffexd"]);
+        $stuffnamaexd = htmlspecialchars($tambahexd["stuffnamaexd"]);
+        $qtyexd = htmlspecialchars($tambahexd["qtyexd"]);
+        $hargaexd = htmlspecialchars($tambahexd["hargaexd"]);
+        $subhargaexd = htmlspecialchars($tambahexd["subhargaexd"]);
+
+        // buat query tambah
+        $query = "INSERT INTO expensedetail
+                    VALUES ('$expensekodeexd', '$kodeexd', '$stuffexd', '$stuffnamaexd', '$qtyexd', '$hargaexd', '$subhargaexd')";
+
+        // jalankan query tambah
+        mysqli_query($connect, $query);
+
         return mysqli_affected_rows($connect);
     }
 ?>

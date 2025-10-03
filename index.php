@@ -24,6 +24,8 @@
     <br><br>
     <a href="indexstuff.php">Master Stuff</a>
     <br><br>
+    <a href="indexexpense.php">Expense</a>
+    <br><br>
 
 </body>
 </html>
