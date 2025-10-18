@@ -7,6 +7,12 @@
 
     // jalankan query stuff
     $stuffs = query($query);
+
+    // jika tombol cari ditekan
+    if( isset($_POST["cari"]) ) {
+        // jalankan fungsi pencarian
+        $stuffs = caristu($_POST["caristu"]);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +28,13 @@
     <h1>Master Stuff</h1>
     <a href="tambahstuff.php">Tambah Stuff</a>
     <br><br>
+    <form action="" method="post">
+        <div>
+            <input type="text" id="caristu" name="caristu" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
+            <button type="submit" name="cari" class="btn btn-primary">Cari</button>
+        </div>
+    </form>
+    <br>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
             <th>No.</th>

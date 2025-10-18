@@ -5,6 +5,12 @@
     $query = "SELECT * FROM category";
 
     $categories = query($query);
+
+    // tombol cari ditekan
+    if( isset($_POST["cari"]) ) {
+        // jalankan fungsi pencarian
+        $categories = caricat($_POST["caricat"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +28,13 @@
     <a href="tambahcategory.php">Tambah Category</a>
     <br><br>
 
+    <form action="" method="post">
+        <div>
+            <input type="text" id="caricat" name="caricat" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
+            <button type="submit" name="cari" class="btn btn-primary">Cari</button>
+        </div>
+    </form>
+    <br>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
             <th>No.</th>

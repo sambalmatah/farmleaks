@@ -7,6 +7,12 @@
 
     // jalankan query select
     $denominations = query($query);
+
+    // jika tombol cari ditekan
+    if( isset($_POST["cari"]) ) {
+        // jalankan fungsi pencarian
+        $denominations = cariden($_POST["cariden"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +29,13 @@
     <h1>Master Denomination</h1>
     <a href="tambahdenomination.php">Tambah Denomination</a>
     <br><br>
+    <form action="" method="post">
+        <div>
+            <input type="text" id="cariden" name="cariden" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
+            <button type="submit" name="cari" class="btn btn-primary">Cari</button>
+        </div>
+    </form>
+    <br>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
             <th>No.</th>

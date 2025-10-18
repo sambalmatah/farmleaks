@@ -75,6 +75,15 @@
         return mysqli_affected_rows($connect);
     }
 
+    function caricat($caricat) {
+        // buat query
+        $query = "SELECT * FROM category
+                    WHERE catkode LIKE '%$caricat%' 
+                    OR catnama LIKE '%$caricat%'";
+
+        return query($query);
+    }
+
     // ===FUNGSI DENOMINATION===
     function tambahden($data) {
         // daftarkan variabel global untuk $connect
@@ -125,6 +134,15 @@
 
         // kembalikan nilai baris database terafeksi
         return mysqli_affected_rows($connect);
+    }
+
+    function cariden($cariden) {
+        // buat query
+        $query = "SELECT * FROM denomination
+                    WHERE denkode LIKE '%$cariden%'
+                    OR dennama LIKE '%$cariden%'";
+
+        return query($query);
     }
 
     // ===FUNGSI STUFF===
@@ -197,6 +215,20 @@
 
         // kembalikan nilai bari database terafeksi
         return mysqli_affected_rows($connect);
+    }
+
+    function caristu($caristu) {
+        // buat query
+        $query = "SELECT * FROM stuff
+                    WHERE stukode LIKE '%$caristu%'
+                    OR stunama LIKE '%$caristu%'
+                    OR stukategori LIKE '%$caristu%'
+                    OR stukategorinama LIKE '%$caristu%'
+                    OR stuunit LIKE '%$caristu%'
+                    OR stuunitnama LIKE '%$caristu%'
+                    OR stustok LIKE '%$caristu%'";
+
+        return query($query);
     }
 
     // ===FUNGSI EXPENSE DETAIL===
