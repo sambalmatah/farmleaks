@@ -4,6 +4,7 @@
 
     // cek apakah tombol submit sudah ditekan atau belum
     if( isset($_POST["submit"]) ) {
+
         // cek apakah data berahsil ditambahkan atau tidak
         if( tambahcat($_POST) > 0) {
             echo "
@@ -35,7 +36,7 @@
     <a href="indexcategory.php">Kembali</a>
     <br><br>
     <h2>Tambah Kategori</h2>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div>
             <label for="kodecat">Kode : </label>
             <input type="text" id="kodecat" name="kodecat" placeholder="masukan kode..." required>
@@ -47,6 +48,10 @@
         <div>
             <label for="keterangancat">Keterangan :</label>
             <input type="text" id="keterangancat" name="keterangancat" placeholder="masukan nama..." required>
+        </div>
+        <div>
+            <label for="gambarcat">Gambar</label>
+            <input type="file" id="gambarcat" name="gambarcat" placeholder="masukan gambar">
         </div>
         <div>
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>

@@ -42,6 +42,7 @@
             <th>Kode</th>
             <th>Nama</th>
             <th>Keterangan</th>
+            <th>Gambar</th>
         </tr>
         <?php $i = 1 ?>
         <?php foreach( $categories as $category ) : ?>
@@ -54,6 +55,7 @@
             <td><?php echo $category["catkode"]; ?></td>
             <td><?php echo $category["catnama"]; ?></td>
             <td><?php echo $category["catketerangan"]; ?></td>
+            <td><img src="img/<?php echo $category["catgambar"]; ?>" alt=""></td>
         </tr>
         <?php $i++; ?>
         <?php endforeach; ?>

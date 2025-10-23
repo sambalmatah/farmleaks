@@ -45,7 +45,8 @@
     <a href="indexcategory.php">Kembali</a>
     <br><br>
     <h2>Tambah Kategori</h2>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="gambarlama" value="<?php echo $category['catgambar']; ?>">
         <div>
             <label for="kodecat">Kode : </label>
             <input type="text" id="kodecat" name="kodecat" placeholder="masukan kode..."  value="<?php echo $category["catkode"]; ?>" required readonly>
@@ -57,6 +58,13 @@
         <div>
             <label for="keterangancat">Keterangan :</label>
             <input type="text" id="keterangancat" name="keterangancat" placeholder="masukan nama..." value="<?php echo $category["catketerangan"]; ?>" required>
+        </div>
+        <div>
+            <label for="gambarcat">Gambar :</label>
+            <div>
+                <img src="img/<?php echo $category['catgambar']; ?>" alt="">
+            </div>
+            <input type="file" id="gambarcat" name="gambarcat" placeholder="masukan gambar">
         </div>
         <div>
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
