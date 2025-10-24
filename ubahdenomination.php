@@ -1,4 +1,13 @@
 <?php 
+    // jalankan session diawal
+    session_start();
+
+    // cek sudah login atau tidak
+    if( !isset($_SESSION["login"]) ) {
+        header("Location: login.php");
+        exit;
+    }
+    
     // kaitkan file functions.php
     include 'functions.php';
 
