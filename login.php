@@ -2,13 +2,34 @@
     // jalankan session diawal
     session_start();
 
+    // kaitkan dengan file functions.php
+    require 'functions.php';
+
+    // cek apakah ada $_COOKIE
+    if( isset($_COOKIE['id']) && isset($_COOKIE['key']) ) {
+        $id = $_COOKIE['id'];
+        $key = $_COOKIE['key'];
+
+        // buat queryuser
+        $queryuser = "SELECT usrusername FROM user
+                        WHERE usrkode = '$id'";
+
+        // ambil username berdasarkan id
+        $result = mysqli_query($connect, $queryuser);
+
+        $row = mysqli_fetch_array($result);
+
+        // cek cookie dan username
+        if( $key === hash('sha256', $row['usrusername']) ) {
+            $_SESSION['login'] = true;
+        }
+    }
+
+    // cek apakah ada $_SESSION
     if( isset($_SESSION["login"]) ) {
         header("Location: index.php");
         exit;
     }
-
-    // kaitkan dengan file functions.php
-    require 'functions.php';
 
     // cek apakah tombol login sudah ditekan
     if( isset($_POST["login"]) ) {
@@ -25,11 +46,20 @@
 
         // cek username
         if( mysqli_num_rows($result) === 1 ) {
-            // cek password
+            // tampung $result kedalam $row
             $row = mysqli_fetch_assoc($result);
+
+            // cek password
             if( password_verify($password, $row["usrpassword"]) ) {
                 // set session
                 $_SESSION["login"] = true;
+
+                // cek remember me
+                if( isset($_POST["remember"]) ) {
+                    // buat cookie
+                    setcookie('id', $row['usrkode'], time()+60);
+                    setcookie('key', hash('sha256', $row['usrusername']), time()+60);
+                }
 
                 header("Location: index.php");
                 exit;
@@ -71,6 +101,10 @@
             <label for="password">Password : </label>
             <br>
             <input type="password" id="password" name="password" placeholder="masukan password">
+        </div>
+        <div>
+            <input type="checkbox" id="remember" name="remember" placeholder="">
+            <label for="remember">Remember me</label>
         </div>
         <div>
             <button type="submit" name="login" class="btn btn-primary">Login</button>
