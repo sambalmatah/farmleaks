@@ -11,8 +11,24 @@
     // kaitkan file functions.php
     include 'functions.php';
 
+    // pagination konfigurasi
+    $jumlahdataperhalaman = 5;
+    // menjumlahkan total baris data
+    $jumlahdata = count(query("SELECT * FROM stuff"));
+    // cari total halaman
+    $jumlahhalaman = ceil($jumlahdata / $jumlahdataperhalaman);
+    // cari halaman aktif
+    if( isset($_GET["page"]) ) {
+        $halamanaktif = $_GET["page"];
+    } else {
+        $halamanaktif = 1;
+    }
+
+    // cari awaldata setiap halaman
+    $awaldata = ($jumlahdataperhalaman * $halamanaktif) - $jumlahdataperhalaman;
+
     // buat query stuff
-    $query = "SELECT * FROM stuff";
+    $query = "SELECT * FROM stuff LIMIT $awaldata, $jumlahdataperhalaman";
 
     // jalankan query stuff
     $stuffs = query($query);
@@ -43,6 +59,21 @@
             <button type="submit" name="cari" class="btn btn-primary">Cari</button>
         </div>
     </form>
+    <br>
+    <!-- navigasi pagination -->
+    <?php if($halamanaktif > 1) : ?>
+    <a href="?page=<?php echo $halamanaktif - 1; ?>">&laquo;</a>
+    <?php endif; ?>
+    <?php for($i = 1; $i <= $jumlahhalaman; $i++) : ?>
+        <?php if($i == $halamanaktif) : ?>
+            <a href="?page=<?php echo $i; ?>" style="font-weight: bold; color: salmon;"><?php echo $i; ?></a>
+        <?php else : ?>
+        <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+    <?php if($halamanaktif < $jumlahhalaman) : ?>
+    <a href="?page=<?php echo $halamanaktif + 1; ?>">&laquo;</a>
+    <?php endif; ?>
     <br>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
