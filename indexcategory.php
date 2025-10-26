@@ -40,34 +40,40 @@
     <form action="" method="post">
         <div>
             <input type="text" id="caricat" name="caricat" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
-            <button type="submit" name="cari" class="btn btn-primary">Cari</button>
+            <button type="submit" id="btn-caricat" name="cari" class="btn btn-primary">Cari</button>
         </div>
     </form>
     <br>
-    <table border="1" cellpadding="10" cellspacing="0">
-        <tr>
-            <th>No.</th>
-            <th>Aksi</th>
-            <th>Kode</th>
-            <th>Nama</th>
-            <th>Keterangan</th>
-            <th>Gambar</th>
-        </tr>
-        <?php $i = 1 ?>
-        <?php foreach( $categories as $category ) : ?>
-        <tr>
-            <td><?php echo $i; ?></td>
-            <td>
-                <a href="ubahcategory.php?catkode=<?php echo $category["catkode"] ?>">Ubah</a>
-                <a href="hapuscategory.php?catkode=<?php echo $category["catkode"] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus Kategori : <?php echo $category["catnama"]; ?>?')">Hapus</a>
-            </td>
-            <td><?php echo $category["catkode"]; ?></td>
-            <td><?php echo $category["catnama"]; ?></td>
-            <td><?php echo $category["catketerangan"]; ?></td>
-            <td><img src="img/<?php echo $category["catgambar"]; ?>" alt=""></td>
-        </tr>
-        <?php $i++; ?>
-        <?php endforeach; ?>
-    </table>
+    <!-- bungkus dengan id agar memungkinkan DOM -->
+    <div id="container-cat">
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>No.</th>
+                <th>Aksi</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Keterangan</th>
+                <th>Gambar</th>
+            </tr>
+            <?php $i = 1 ?>
+            <?php foreach( $categories as $category ) : ?>
+            <tr>
+                <td><?php echo $i; ?></td>
+                <td>
+                    <a href="ubahcategory.php?catkode=<?php echo $category["catkode"] ?>">Ubah</a>
+                    <a href="hapuscategory.php?catkode=<?php echo $category["catkode"] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus Kategori : <?php echo $category["catnama"]; ?>?')">Hapus</a>
+                </td>
+                <td><?php echo $category["catkode"]; ?></td>
+                <td><?php echo $category["catnama"]; ?></td>
+                <td><?php echo $category["catketerangan"]; ?></td>
+                <td><img src="img/<?php echo $category["catgambar"]; ?>" alt=""></td>
+            </tr>
+            <?php $i++; ?>
+            <?php endforeach; ?>
+        </table>
+        
+    </div>
+    
+    <script src="js/scriptcat.js"></script>
 </body>
 </html>
