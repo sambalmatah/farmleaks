@@ -28,6 +28,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
+    
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/scriptcat.js"></script>
+
+    <style>
+        .loading-img {
+            width: 20px;
+            position: absolute;
+            padding-left: 6px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <a href="index.php">Home</a> | 
@@ -41,6 +53,7 @@
         <div>
             <input type="text" id="caricat" name="caricat" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
             <button type="submit" id="btn-caricat" name="cari" class="btn btn-primary">Cari</button>
+            <img src="img/loading.gif" class="loading-img" alt="">
         </div>
     </form>
     <br>
@@ -73,7 +86,5 @@
         </table>
         
     </div>
-    
-    <script src="js/scriptcat.js"></script>
 </body>
 </html>

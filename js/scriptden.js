@@ -1,21 +1,20 @@
-// ambil element den yang dibutuhkan
-var keywordden = document.getElementById("cariden");
-var btnCariden = document.getElementById("btn-cariden");
-var containerden = document.getElementById("container-den");
+// jika dokumen ready, jalankan jquery
+$(document).ready(function () {
+    // hilangkan tombol cari
+    $("#btn-cariden").hide();
 
-// tambahkan event ketika keyword ditulis
-keywordden.addEventListener("keyup", function () {
-    // buat object ajax
-    var xhr = new XMLHttpRequest();
+    // event keyword ketika ditulis
+    $("#cariden").on("keyup", function () {
+        // munculkan loading
+        $(".loading-img").show();
 
-    // cek kesiapan ajax
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            containerden.innerHTML = xhr.responseText;
-        }
-    };
-
-    // eksekusi ajax
-    xhr.open("GET", "ajax/cariden.php?keywordden=" + keywordden.value, true);
-    xhr.send();
+        // $.get()
+        $.get(
+            "ajax/cariden.php?keywordden=" + $("#cariden").val(),
+            function (cariden) {
+                $("#container-den").html(cariden);
+                $(".loading-img").hide();
+            }
+        );
+    });
 });

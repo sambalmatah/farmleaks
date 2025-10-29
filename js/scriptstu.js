@@ -1,21 +1,22 @@
-// ambil element stu
-var keywordstu = document.getElementById("caristu");
-var btnCaristu = document.getElementById("btn-caristu");
-var containerstu = document.getElementById("container-stu");
+// jika dokumen ready, jalankan jquery
+$(document).ready(function () {
+    // hilangkan tombol cari
+    $("#btn-caristu").hide();
 
-// tambahkan event ketika keyword ditulis
-keywordstu.addEventListener("keyup", function () {
-    // buat object ajax
-    var xhr = new XMLHttpRequest();
+    // cari keyword jika ditekan
+    $("#caristu").on("keyup", function () {
+        // munculkan image loading
+        $(".loading-img").show();
 
-    // cek kesiapan ajax
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            containerstu.innerHTML = xhr.responseText;
-        }
-    };
+        // $.get()
+        $.get(
+            "ajax/caristu.php?keywordstu=" + $("#caristu").val(),
+            function (caristu) {
+                $("#container-stu").html(caristu);
 
-    // eksekusi ajax
-    xhr.open("GET", "ajax/caristu.php?keywordstu=" + keywordstu.value, true);
-    xhr.send();
+                // hilangkan image loading
+                $(".loading-img").hide();
+            }
+        );
+    });
 });

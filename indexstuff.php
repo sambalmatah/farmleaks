@@ -29,6 +29,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stuff</title>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/scriptstu.js"></script>
+
+    <style>
+        .loading-img {
+            width: 20px;
+            position: absolute;
+            padding-left: 6px;
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
     <a href="index.php">Home</a>
@@ -41,6 +54,7 @@
         <div>
             <input type="text" id="caristu" name="caristu" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
             <button type="submit"id="btn-caristu"  name="cari" class="btn btn-primary">Cari</button>
+            <img src="img/loading.gif" alt="" class="loading-img">
         </div>
     </form>
     <br>
@@ -81,6 +95,5 @@
 
     </div>
 
-    <script src="js/scriptstu.js"></script>
 </body>
 </html>

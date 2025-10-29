@@ -30,6 +30,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Denomination</title>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/scriptden.js"></script>
+
+    <style>
+        .loading-img {
+            width: 20px;
+            position: absolute;
+            padding-left: 6px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <a href="index.php">Home</a>
@@ -42,6 +54,7 @@
         <div>
             <input type="text" id="cariden" name="cariden" placeholder="masukan pencarian..." size="40" autocomplete="off" autofocus>
             <button type="submit" id="btn-cariden" name="cari" class="btn btn-primary">Cari</button>
+            <img src="img/loading.gif" class="loading-img" alt="">
         </div>
     </form>
     <br>
@@ -72,6 +85,5 @@
 
     </div>
 
-    <script src="js/scriptden.js"></script>
 </body>
 </html>

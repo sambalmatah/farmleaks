@@ -1,21 +1,25 @@
-// ambil elemen cat yang dibutuhkan
-var keywordcat = document.getElementById("caricat");
-var btnCaricat = document.getElementById("btn-caricat");
-var containercat = document.getElementById("container-cat");
+// jika document sudah ready maka jalankan jquery
+$(document).ready(function () {
+    // hilangkan tombol cari
+    $("#btn-caricat").hide();
 
-// tambahkan event ketika keyword ditulis
-keywordcat.addEventListener("keyup", function () {
-    // buat object ajax
-    var xhr = new XMLHttpRequest();
+    // event ketika keyword ditulis
+    $("#caricat").on("keyup", function () {
+        // munculkan icon loading
+        $(".loading-img").show();
 
-    // cek kesiapan ajax
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            containercat.innerHTML = xhr.responseText;
-        }
-    };
+        // cari container wrap dan load halaman lain (ajax)
+        // $("#container-cat").load(
+        //     "ajax/caricat.php?keywordcat=" + $("#caricat").val()
+        // );
 
-    // eksekusi ajax
-    xhr.open("GET", "ajax/caricat.php?keywordcat=" + keywordcat.value, true);
-    xhr.send();
+        // $.get()
+        $.get(
+            "ajax/caricat.php?keywordcat=" + $("#caricat").val(),
+            function (caridat) {
+                $("#container-cat").html(caridat);
+                $(".loading-img").hide();
+            }
+        );
+    });
 });
